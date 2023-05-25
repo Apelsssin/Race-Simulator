@@ -83,6 +83,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -102,6 +103,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -117,6 +119,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -136,38 +139,39 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\RaceSimulation\AirV.h" />
-    <ClInclude Include="..\RaceSimulation\Boots.h" />
-    <ClInclude Include="..\RaceSimulation\Broom.h" />
-    <ClInclude Include="..\RaceSimulation\Camel.h" />
-    <ClInclude Include="..\RaceSimulation\CamelFast.h" />
-    <ClInclude Include="..\RaceSimulation\Carpet.h" />
-    <ClInclude Include="..\RaceSimulation\Centaur.h" />
-    <ClInclude Include="..\RaceSimulation\Eagle.h" />
-    <ClInclude Include="..\RaceSimulation\Race.h" />
+    <ClInclude Include="AirV.h" />
+    <ClInclude Include="Boots.h" />
+    <ClInclude Include="Broom.h" />
+    <ClInclude Include="Camel.h" />
+    <ClInclude Include="CamelFast.h" />
+    <ClInclude Include="Carpet.h" />
+    <ClInclude Include="Centaur.h" />
+    <ClInclude Include="Eagle.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GroundV.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Race.h" />
     <ClInclude Include="Vehicle.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\RaceSimulation\AirV.cpp" />
-    <ClCompile Include="..\RaceSimulation\Boots.cpp" />
-    <ClCompile Include="..\RaceSimulation\Broom.cpp" />
-    <ClCompile Include="..\RaceSimulation\Camel.cpp" />
-    <ClCompile Include="..\RaceSimulation\Eagle.cpp" />
-    <ClCompile Include="..\RaceSimulation\Exceptions.cpp" />
-    <ClCompile Include="..\RaceSimulation\GroundV.cpp" />
-    <ClCompile Include="..\RaceSimulation\Race.cpp" />
+    <ClCompile Include="AirV.cpp" />
+    <ClCompile Include="Boots.cpp" />
+    <ClCompile Include="Broom.cpp" />
+    <ClCompile Include="Camel.cpp" />
     <ClCompile Include="CamelFast.cpp" />
     <ClCompile Include="Carpet.cpp" />
     <ClCompile Include="Centaur.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Eagle.cpp" />
+    <ClCompile Include="Exceptions.cpp" />
+    <ClCompile Include="GroundV.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Race.cpp" />
     <ClCompile Include="Vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>

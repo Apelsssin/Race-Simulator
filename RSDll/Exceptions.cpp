@@ -1,5 +1,8 @@
 #include "Exceptions.h"
-const char* Exceptions::what() const noexcept
-{
-    return message.c_str();
+#include "pch.h"
+namespace Vehicle {
+    const char* Exceptions::what() const noexcept
+    {
+        return message.c_str();
+    }
 }

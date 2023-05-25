@@ -1,4 +1,7 @@
 #pragma once
 #include "AirV.h"
-    double AirV::summTime() { return time; }
-    void AirV::reduce() { ; };
+#include "pch.h"
+namespace Vehicle {
+	double AirV::summTime() { return time; }
+	void AirV::reduce() { ; };
+}
