@@ -13,21 +13,8 @@
 #include "Eagle.h"
 #include "Race.h"
 #include "GroundV.h"
-#include "Exceptions.h"
 #include "Centaur.h"
-/*
-#include "../RSDll/Vehicle.h"
-#include "../RSDll/AirV.h"
-#include "../RSDll/Carpet.h"
-#include "../RSDll/Eagle.h"
-#include "../RSDll/Broom.h"
-#include "../RSDll/GroundV.h"
-#include "../RSDll/Camel.h"
-#include "../RSDll/CamelFast.h"
-#include "../RSDll/Centaur.h"
-#include "../RSDll/Boots.h"
-#include "../RSDll/Exceptions.h"
-#include "../RSDll/Race.h"*/
+
 int main()
 {
     try {
@@ -42,10 +29,12 @@ int main()
             int type;
             std::cin >> type;
             Vehicle::Race r(type);
-            std::cout << "Укажите длину дистанции (должна быть положительна): ";
-            double distance;
-            std::cin >> distance;
-            if (distance <= 0) throw Vehicle::Exceptions("Длина должна быть положительна!");
+            double distance = -1;
+            do {
+                std::cout << "Укажите длину дистанции (должна быть положительна): ";
+                std::cin >> distance;
+                if (distance <= 0) std::cout << "Длина должна быть положительна! Попробуйте еще раз." << std::endl;
+            } while (distance <= 0);
             std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
             std::cout << "1. Зарегистрировать транспорт" << std::endl;
             std::cout << "Выберите действие: ";
@@ -56,6 +45,7 @@ int main()
             for (int j = 0; j < 7; ++j) {
                 arrCounter[j] = 0;
             }
+            bool wrongType = false;
             int vehicle = -1;
             do {
                 while (vehicle != 0) {
@@ -92,77 +82,118 @@ int main()
                         {
                         case 1: {
                             if ((r.get_type() == 1 || r.get_type() == 3)) {
-                                if (arrCounter[0] != 0) throw Vehicle::Exceptions("Ботинки-вездеходы уже зарегистрированы!");
-                                arr[i] = new Vehicle::Boots(distance);
-                                arrCounter[0] = arrCounter[0] + 1;
+                                if (arrCounter[0] != 0) {
+                                    std::cout << "Ботинки-вездеходы уже зарегистрированы!" << std::endl;
+                                    wrongType = true;
+                                }
+                                if (arrCounter[0] == 0) {
+                                    arr[i] = new Vehicle::Boots(distance);
+                                    arrCounter[0] = arrCounter[0] + 1;
+                                }
                             }
-                            else throw Vehicle::Exceptions("Попытка зарегистрировать неправильный тип транспортного средства!");
+                            else std::cout << "Попытка зарегистрировать неправильный тип транспортного средства!" << std::endl;
                             break;
                         }
 
                         case 2: {
                             if ((r.get_type() == 2 || r.get_type() == 3)) {
-                                if (arrCounter[1] != 0) throw Vehicle::Exceptions("Метла уже зарегистрирована!");
-                                arr[i] = new Vehicle::Broom(distance);
-                                arrCounter[1] = arrCounter[1] + 1;
+                                if (arrCounter[1] != 0) {
+                                    std::cout << "Метла уже зарегистрирована!" << std::endl;
+                                    wrongType = true;
+                                }
+                                if (arrCounter[1] == 0) {
+                                    arr[i] = new Vehicle::Broom(distance);
+                                    arrCounter[1] = arrCounter[1] + 1;
+                                }
                             }
-                            else throw Vehicle::Exceptions("Попытка зарегистрировать неправильный тип транспортного средства!");
+                            else std::cout << "Попытка зарегистрировать неправильный тип транспортного средства!" << std::endl;
                             break;
                         }
                         case 3: {
                             if ((r.get_type() == 1 || r.get_type() == 3)) {
-                                if (arrCounter[2] != 0) throw Vehicle::Exceptions("Верблюд уже зарегистрирован!");
-                                arr[i] = new Vehicle::Camel(distance);
-                                arrCounter[2] = arrCounter[2] + 1;
+                                if (arrCounter[2] != 0) {
+                                    std::cout << "Верблюд уже зарегистрирован!" << std::endl;
+                                    wrongType = true;
+                                }
+                                if (arrCounter[2] == 0) {
+                                    arr[i] = new Vehicle::Camel(distance);
+                                    arrCounter[2] = arrCounter[2] + 1;
+                                }
                             }
-                            else throw Vehicle::Exceptions("Попытка зарегистрировать неправильный тип транспортного средства!");
+                            else std::cout << "Попытка зарегистрировать неправильный тип транспортного средства!" << std::endl;
                             break;
                         }
                         case 4: {
                             if ((r.get_type() == 1 || r.get_type() == 3)) {
-                                if (arrCounter[3] != 0) throw Vehicle::Exceptions("Кентавр уже зарегистрирован!");
-                                arr[i] = new Vehicle::Centaur (distance);
-                                arrCounter[3] = arrCounter[3] + 1;
+                                if (arrCounter[3] != 0) {
+                                    std::cout << "Кентавр уже зарегистрирован!" << std::endl;
+                                    wrongType = true;
+                                }
+                                if (arrCounter[3] == 0) {
+                                    arr[i] = new Vehicle::Centaur(distance);
+                                    arrCounter[3] = arrCounter[3] + 1;
+                                }
                             }
-                            else throw Vehicle::Exceptions("Попытка зарегистрировать неправильный тип транспортного средства!");
+                            else std::cout << "Попытка зарегистрировать неправильный тип транспортного средства!" << std::endl;
                             break;
                         }
                         case 5: {
                             if ((r.get_type() == 2 || r.get_type() == 3)) {
-                                if (arrCounter[4] != 0) throw Vehicle::Exceptions("Орел уже зарегистрирован!");
-                                arr[i] = new Vehicle::Eagle(distance);
-                                arrCounter[4] = arrCounter[4] + 1;
+                                if (arrCounter[4] != 0) {
+                                    std::cout << "Орел уже зарегистрирован!" << std::endl;
+                                    wrongType = true;
+                                }
+                                if (arrCounter[4] == 0) {
+                                    arr[i] = new Vehicle::Eagle(distance);
+                                    arrCounter[4] = arrCounter[4] + 1;
+                                }
                             }
-                            else throw Vehicle::Exceptions("Попытка зарегистрировать неправильный тип транспортного средства!");
+                            else std::cout << "Попытка зарегистрировать неправильный тип транспортного средства!" << std::endl;
                             break;
                         }
                         case 6: {
                             if ((r.get_type() == 1 || r.get_type() == 3)) {
-                                if (arrCounter[5] != 0) throw Vehicle::Exceptions("Верблюд-быстроход уже зарегистрирован!");
-                                arr[i] = new Vehicle::CamelFast(distance);
-                                arrCounter[5] = arrCounter[5] + 1;
+                                if (arrCounter[5] != 0) {
+                                    std::cout << "Верблюд-быстроход уже зарегистрирован!" << std::endl;
+                                    wrongType = true;
+                                }
+                                if (arrCounter[5] == 0) {
+                                    arr[i] = new Vehicle::CamelFast(distance);
+                                    arrCounter[5] = arrCounter[5] + 1;
+                                }
                             }
-                            else throw Vehicle::Exceptions("Попытка зарегистрировать неправильный тип транспортного средства!");
+                            else std::cout << "Попытка зарегистрировать неправильный тип транспортного средства!" << std::endl;
                             break;
                         }
                         case 7: {
                             if ((r.get_type() == 2 || r.get_type() == 3)) {
-                                if (arrCounter[6] != 0) throw Vehicle::Exceptions("Ковер-самолет уже зарегистрирован!");
-                                arr[i] = new Vehicle::Carpet(distance);
-                                arrCounter[6] = arrCounter[6] + 1;
+                                if (arrCounter[6] != 0) {
+                                    std::cout << "Ковер-самолет уже зарегистрирован!" << std::endl;
+                                    wrongType = true;
+                                }
+                                if (arrCounter[6] == 0) {
+                                    arr[i] = new Vehicle::Carpet(distance);
+                                    arrCounter[6] = arrCounter[6] + 1;
+                                }
                             }
-                            else throw Vehicle::Exceptions("Попытка зарегистрировать неправильный тип транспортного средства!");
+                            else std::cout << "Попытка зарегистрировать неправильный тип транспортного средства!" << std::endl;
                             break;
                         }
                         default:
-                            throw Vehicle::Exceptions("Попытка зарегистрировать неправильный тип транспортного средства!");
+                            std::cout << "Попытка зарегистрировать неправильный тип транспортного средства!" << std::endl;
                             break;
                         }
-                        std::cout << arr[i]->get_type() << " успешно зарегистрирован!" << std::endl;
-                        i++;
+                        if (wrongType == false) {
+                            std::cout << arr[i]->get_type() << " успешно зарегистрирован!" << std::endl;
+                            i++;
+                        }
+                        else wrongType = false;
+                    }
+                    else  if (vehicle == 0 && i < 1) {
+                        std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства!" << std::endl;
+                        vehicle = -1;
                     }
                 }
-                if (i < 1) throw Vehicle::Exceptions("Должно быть зарегистрировано хотя бы 2 транспортных средства!");
                 std::cout << "1. Зарегистрировать транспорт\n"
                     << "2. Начать гонку\n"
                     << "Выберите действие: ";
@@ -179,7 +210,7 @@ int main()
                 }
                 for (int k = 0; k < i - 1; ++k) {
                     for (int j = 0; j < i - 1; ++j) {
-                        if (arrT[j] < arrT[j + 1]) {
+                        if (arrT[j] > arrT[j + 1]) {
                             std::swap(arrT[j], arrT[j + 1]);
                             std::swap(arr_i[j], arr_i[j + 1]);
                         }
@@ -199,7 +230,7 @@ int main()
             std::cin >> action;
         } while (action == 1);
     }
-    catch (const Vehicle::Exceptions& e) {
-        std::cout << e.what() << std::endl;
+    catch (...) {
+        std::cout << "Неизвестная ошибка!" << std::endl;
     }
 }

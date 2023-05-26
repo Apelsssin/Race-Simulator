@@ -151,7 +151,6 @@
     <ClInclude Include="Carpet.h" />
     <ClInclude Include="Centaur.h" />
     <ClInclude Include="Eagle.h" />
-    <ClInclude Include="Exceptions.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GroundV.h" />
     <ClInclude Include="pch.h" />
@@ -168,7 +167,6 @@
     <ClCompile Include="Centaur.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Eagle.cpp" />
-    <ClCompile Include="Exceptions.cpp" />
     <ClCompile Include="GroundV.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Race.cpp" />
